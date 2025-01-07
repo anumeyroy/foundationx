@@ -5,6 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { join } from 'path'
 import { ConfigModule } from '@nestjs/config'
+import { PrismaModule } from './common/prisma/prisma.module'
+import { UsersModule } from './models/users/users.module'
 
 @Module({
   imports: [
@@ -18,6 +20,9 @@ import { ConfigModule } from '@nestjs/config'
       fieldResolverEnhancers: ['guards'],
     }),
     ConfigModule.forRoot(),
+
+    PrismaModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
